@@ -1,4 +1,3 @@
-const NodeCache = require("node-cache");
 const Service = require("./Service");
 const cron = require("node-cron");
 

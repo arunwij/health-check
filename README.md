@@ -3,30 +3,30 @@ health-check is HTTP service health monitor. We'll notify you when your applicat
 
 ## Installation
 ```
-npm install health-check
+npm install @arunwij/health-check
 ```
 ## Usage
 ```
-const { HealthCheck, intervals } = require('health-check');
+const { HealthCheck, intervals } = require('@arunwij/health-check');
 
 // specify service details
 const serviceConfigs = [
     {
         name: "My Service 1",
         url: "https://my-service-1-url.com/health",
-        interval: intervals["5-second"]
+        interval: intervals["5-second"],
         recipients: ["notify-user1@example.com", "notify-user2@example.com"]
     },
     {
         name: "My Service 2",
         url: "http://localhost:3000",
-        interval: intervals["1-minute"]
+        interval: intervals["1-minute"],
         recipients: ["notify-user1@example.com"]
     }
 ]
 
 // specify email server configs
-const emailConfigs = {
+const emailConfig = {
     from: "from-email@myemail.com",
     host: "smtp-host-url",
     port: "smtp-port",
@@ -36,6 +36,7 @@ const emailConfigs = {
     }
 }
 
-const healthCheck = new HealthCheck(serviceConfig, emailConfig);
-healthcheck.monitor();
+const healthCheck = new HealthCheck(serviceConfigs, emailConfig);
+healthCheck.monitor();
+
 ```
