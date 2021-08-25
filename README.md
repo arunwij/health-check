@@ -7,7 +7,7 @@ npm install health-check
 ```
 ## Usage
 ```
-const {Health, intervals} = require('health-check');
+const {HealthCheck, intervals} = require('health-check');
 
 // specify service details
 const serviceConfigs = [
