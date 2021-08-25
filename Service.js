@@ -42,7 +42,7 @@ Service.prototype.monitor = async function () {
       { status: response.status, statusText: response.statusText },
     ];
   } catch (error) {
-    const response = error?.response || {
+    const response = error.response || {
       status: 404,
       statusText: "Not Found",
     };
