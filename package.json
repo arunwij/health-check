@@ -1,5 +1,5 @@
 {
-  "name": "health-check",
+  "name": "@arunwij/health-check",
   "version": "0.0.1",
   "description": "http service health monitor",
   "main": "index.js",
