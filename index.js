@@ -4,7 +4,7 @@ const config = require("./config");
 const eventEmitter = require("./eventEmitter");
 
 //
-async function HealthCheck(serviceConfigs = []) {
+function HealthCheck(serviceConfigs = []) {
   this.serviceManager = new ServiceManager(serviceConfigs);
   this.eventEmitter = eventEmitter.on(
     "SERVICE_STATUS_CHANGE",
@@ -36,4 +36,7 @@ HealthCheck.prototype.monitor = function () {
 //   },
 // ];
 
-module.exports = HealthCheck;
+module.exports = {
+  HealthCheck,
+  intervals: config.intervals,
+};

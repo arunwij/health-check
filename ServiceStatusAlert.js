@@ -4,7 +4,15 @@ const path = require("path");
 const pug = require("pug");
 const { serviceStatus } = require("./constants");
 //
-const mailer = new Mailer(config.mail);
+const mailConfig = {
+  host: process.env.HC_SMTP_HOST,
+  port: process.env.HC_SMTP_PORT,
+  auth: {
+    user: process.env.HC_SMTP_USERNAME,
+    pass: process.env.HC_SMTP_PASSWORD,
+  },
+};
+const mailer = new Mailer(mailConfig);
 const template = pug.compileFile(
   path.resolve(__dirname, "./templates/ServiceStatus.pug")
 );
@@ -54,14 +62,15 @@ function generateNotification(alert) {
   }
 }
 
-function ServiceStatusAlert(alert, recipients = []) {
+function ServiceStatusAlert(alert, recipients = [], mailer) {
   this.alert = alert;
   this.recipients = recipients;
+  this.mailer = mailer;
 }
 
 ServiceStatusAlert.prototype.notify = async function () {
   const notification = generateNotification(this.alert);
-  await mailer.send(
+  await this.mailer.send(
     notification.subject,
     notification.html,
     notification.text,

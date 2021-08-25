@@ -58,14 +58,6 @@ const config = {
   defaultHelthyStreak: 3,
   defaultUnhealthyStreak: 3,
   monitorTimeout: 10000,
-  mail: {
-    host: "your-host",
-    port: "port",
-    auth: {
-      user: "",
-      pass: "",
-    },
-  },
 };
 
 module.exports = config;
