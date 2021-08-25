@@ -1,23 +1,13 @@
-const Mailer = require("./Mailer");
-const config = require("./config");
+const mailer = require("./mailer");
 const path = require("path");
 const pug = require("pug");
 const { serviceStatus } = require("./constants");
 //
-const mailConfig = {
-  host: process.env.HC_SMTP_HOST,
-  port: process.env.HC_SMTP_PORT,
-  auth: {
-    user: process.env.HC_SMTP_USERNAME,
-    pass: process.env.HC_SMTP_PASSWORD,
-  },
-};
-const mailer = new Mailer(mailConfig);
 const template = pug.compileFile(
   path.resolve(__dirname, "./templates/ServiceStatus.pug")
 );
+
 function generateNotification(alert) {
-  console.log(alert);
   switch (alert.status) {
     case serviceStatus.HEALTHY: {
       const subject = `Health Check - ${alert.name} is UP`;
@@ -69,13 +59,17 @@ function ServiceStatusAlert(alert, recipients = []) {
 
 ServiceStatusAlert.prototype.notify = async function () {
   const notification = generateNotification(this.alert);
-  await mailer.send(
-    notification.subject,
-    notification.html,
-    notification.text,
-    this.recipients
-  );
-  console.log("Alert sent");
+  try {
+    await mailer.send(
+      notification.subject,
+      notification.html,
+      notification.text,
+      this.recipients
+    );
+    console.log("Alert sent");
+  } catch (err) {
+    console.log("Failed to send the alert");
+  }
 };
 
 module.exports = ServiceStatusAlert;

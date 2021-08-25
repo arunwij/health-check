@@ -1,18 +1,15 @@
 const nodemailer = require("nodemailer");
 
-function Mailer(config) {
-  this.transporter = nodemailer.createTransport(config);
+let mailer = null;
+
+function setup(config) {
+  mailer = nodemailer.createTransport(config);
 }
 
-Mailer.prototype.send = async function (
-  subject = "",
-  html = "",
-  text = "",
-  recipients = []
-) {
+async function send(subject = "", html = "", text = "", recipients = []) {
   for (recipient of recipients) {
     try {
-      await this.transporter.sendMail({
+      await mailer.sendMail({
         from: "health-check@mailtrap.io",
         to: recipient,
         subject: subject,
@@ -23,6 +20,9 @@ Mailer.prototype.send = async function (
       console.log(error);
     }
   }
-};
+}
 
-module.exports = Mailer;
+module.exports = {
+  setup,
+  send,
+};
