@@ -62,15 +62,14 @@ function generateNotification(alert) {
   }
 }
 
-function ServiceStatusAlert(alert, recipients = [], mailer) {
+function ServiceStatusAlert(alert, recipients = []) {
   this.alert = alert;
   this.recipients = recipients;
-  this.mailer = mailer;
 }
 
 ServiceStatusAlert.prototype.notify = async function () {
   const notification = generateNotification(this.alert);
-  await this.mailer.send(
+  await mailer.send(
     notification.subject,
     notification.html,
     notification.text,
