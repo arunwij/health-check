@@ -18,6 +18,7 @@ function Service(serviceConfig = {}) {
     interval: serviceConfig.interval || config.defaultInterval,
   };
   this.recipients = serviceConfig.recipients;
+  this.initialized = false;
   this.createdAt = new Date();
   this.monitoredAt = new Date();
 }

@@ -16,6 +16,7 @@ function generateNotification(alert) {
       const html = template({
         name: alert.name,
         status,
+        serviceStatus: true,
         httpResponse: alert.httpResponse,
         url: alert.url,
         timestamp: alert.monitoredAt,
@@ -35,6 +36,7 @@ function generateNotification(alert) {
       const html = template({
         name: alert.name,
         status,
+        serviceStatus: false,
         httpResponse: alert.httpResponse,
         url: alert.url,
         timestamp: alert.monitoredAt,

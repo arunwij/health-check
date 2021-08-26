@@ -25,7 +25,7 @@ function HealthCheck(serviceConfigs = [], emailConfigs = {}) {
 }
 
 HealthCheck.prototype.monitor = function () {
-  this.serviceManager.monitor();
+  this.serviceManager.registerServices();
 };
 
 module.exports = {

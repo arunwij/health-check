@@ -22,7 +22,7 @@ ServiceManager.prototype.getService = function (serviceId) {
   return this.services.get(serviceId);
 };
 
-ServiceManager.prototype.monitor = function () {
+ServiceManager.prototype.registerServices = function () {
   const services = this.services;
   for (const [serviceId, service] of services) {
     const cronCallback = async function () {
