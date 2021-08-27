@@ -23,5 +23,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.12"
-  }
+  },
+  "keywords": [
+    "health",
+    "uptime",
+    "monitor",
+    "notifications",
+    "http",
+    "https"
+  ]
 }
