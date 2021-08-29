@@ -3,6 +3,9 @@ const ServiceStatusAlert = require("./ServiceStatusAlert");
 const config = require("./config");
 const eventEmitter = require("./eventEmitter");
 const mailer = require("./mailer");
+const cron = require("node-cron");
+const pug = require("pug");
+const path = require("path");
 const { serviceStatus } = require("./constants");
 
 //
@@ -26,6 +29,27 @@ function HealthCheck(serviceConfigs = [], emailConfigs = {}) {
 
 HealthCheck.prototype.monitor = function () {
   this.serviceManager.registerServices();
+};
+
+HealthCheck.prototype.sendPeriodicServiceStatus = function ({
+  interval = "",
+  recipients = [],
+}) {
+  const template = pug.compileFile(
+    path.resolve(__dirname, "./templates/HealthCheckPeriodicStatus.pug")
+  );
+
+  const html = template({
+    timestamp: new Date(),
+    period: interval.label,
+  });
+
+  const cronCallback = () => {
+    mailer.send("Health Check - Periodic Service Status", html, "", recipients);
+    console.log("Periodic Status Alert Sent");
+  };
+
+  cron.schedule(interval.value, cronCallback);
 };
 
 module.exports = {
