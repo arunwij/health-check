@@ -1,59 +1,74 @@
 const intervals = {
-  "2-second": {
-    id: "2-second",
-    label: "2 seconds",
+  "every-2-seconds": {
+    id: "every-2-seconds",
+    label: "every 2 seconds",
     value: "*/2 * * * * *",
   },
-  "5-second": {
-    id: "5-second",
-    label: "5 seconds",
+  "every-5-seconds": {
+    id: "every-5-seconds",
+    label: "every 5 seconds",
     value: "*/5 * * * * *",
   },
-  "10-second": {
-    id: "10-second",
-    label: "10 seconds",
+  "every-10-seconds": {
+    id: "every-10-seconds",
+    label: "every 10 seconds",
     value: "*/10 * * * * *",
   },
-  "20-second": {
-    id: "20-second",
-    label: "20 seconds",
+  "every-20-seconds": {
+    id: "every-20-seconds",
+    label: "every 20 seconds",
     value: "*/20 * * * * *",
   },
-  "30-second": {
-    id: "30-second",
-    label: "30 seconds",
+  "every-30-seconds": {
+    id: "every-30-seconds",
+    label: "every 30 seconds",
     value: "*/30 * * * * *",
   },
-  "1-minute": {
-    id: "1-minute",
-    label: "1 minute",
+  "every-1-minute": {
+    id: "every-1-minute",
+    label: "every 1 minute",
     value: "* * * * *",
   },
-  "2-minute": {
-    id: "2-minute",
-    label: "2 minutes",
+  "every-2-minutes": {
+    id: "every-2-minute",
+    label: "every 2 minutes",
     value: "*/2 * * * *",
   },
-  "3-minute": {
-    id: "3-minute",
-    label: "3 minutes",
+  "every-3-minutes": {
+    id: "every-3-minute",
+    label: "every 3 minutes",
     value: "*/3 * * * *",
   },
-  "5-minute": {
-    id: "5-minute",
-    label: "5 minutes",
+  "every-5-minutes": {
+    id: "every-5-minute",
+    label: "every 5 minutes",
     value: "*/5 * * * *",
   },
-  "10-minute": {
+  "every-10-minutes": {
     id: "10-minute",
-    label: "10 minutes",
+    label: "every 10 minutes",
     value: "*/10 * * * *",
+  },
+  "once-a-day": {
+    id: "once-a-day",
+    label: "once a day",
+    value: "0 0 * * *",
+  },
+  "once-a-week": {
+    id: "once-a-week",
+    label: "once a week",
+    value: "0 0 * * 0",
+  },
+  "once-a-month": {
+    id: "once-a-month",
+    label: "once a month",
+    value: "0 0 1 * *",
   },
 };
 
 const config = {
   intervals,
-  defaultInterval: intervals["2-second"],
+  defaultInterval: intervals["every-1-minute"],
   historySize: 5,
   defaultHelthyStreak: 3,
   defaultUnhealthyStreak: 3,
