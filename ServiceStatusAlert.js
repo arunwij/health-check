@@ -4,7 +4,7 @@ const pug = require("pug");
 const { serviceStatus } = require("./constants");
 //
 const template = pug.compileFile(
-  path.resolve(__dirname, "./templates/ServiceStatus.pug")
+  path.resolve(__dirname, "./templates/MonitoringStatus.pug")
 );
 
 function generateNotification(alert) {

@@ -29,7 +29,6 @@ ServiceManager.prototype.registerServices = function () {
       const [status, httpResponse] = await service.monitor();
       service.addHistory(status, httpResponse);
     };
-
     cron.schedule(service.config.interval.value, cronCallback);
   }
 };
