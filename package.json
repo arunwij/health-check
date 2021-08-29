@@ -1,6 +1,6 @@
 {
   "name": "@arunwij/health-check",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "http service health monitor",
   "main": "index.js",
   "scripts": {
