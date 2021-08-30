@@ -10,17 +10,23 @@ npm install @arunwij/health-check
 const { HealthCheck, intervals } = require('@arunwij/health-check');
 
 // specify service details
+
+// name - service name
+// url - service url
+// interval - monitoring interval
+// recipients - alert email recipients
+
 const serviceConfigs = [
     {
         name: "My Service 1",
         url: "https://my-service-1-url.com/health",
-        interval: intervals["5-second"],
+        interval: intervals["every-5-seconds"], 
         recipients: ["notify-user1@example.com", "notify-user2@example.com"]
     },
     {
         name: "My Service 2",
         url: "http://localhost:3000",
-        interval: intervals["1-minute"],
+        interval: intervals["every-5-seconds"],
         recipients: ["notify-user1@example.com"]
     }
 ]
@@ -46,14 +52,11 @@ healthCheck.monitor();
 This feature sends periodic emails for recipients to make sure the health check service is running without issue.
 ```
 const periodicStatusAlertConfig = {
-  interval: intervals["every-5-seconds"],
-  recipients: ["arunaswj@gmail.com"],
-};
-
-healthCheck.sendPeriodicServiceStatus({
   interval: intervals["once-a-day"],
   recipients: ["notify-user1@example.com"],
-});
+};
+
+healthCheck.sendPeriodicServiceStatus(periodicStatusAlertConfig);
 ```
 ## Periodic Health Check Service Status Preview
 [![Screenshot-2021-08-29-at-19-53-51.png](https://i.postimg.cc/ZRML4Whz/Screenshot-2021-08-29-at-19-53-51.png)](https://postimg.cc/N9RXxfMd)
