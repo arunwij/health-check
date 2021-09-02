@@ -31,6 +31,7 @@ Service.prototype.addHistory = function (status, httpResponse) {
 
 Service.prototype.monitor = async function () {
   console.log(`monitoring service ${this.name}...`);
+  console.log("service", this);
   try {
     const options = {
       url: this.url,

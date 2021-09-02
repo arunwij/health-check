@@ -34,18 +34,29 @@ HealthCheck.prototype.monitor = function () {
 HealthCheck.prototype.sendPeriodicServiceStatus = function ({
   interval = "",
   recipients = [],
+  environment = "",
 }) {
   const template = pug.compileFile(
     path.resolve(__dirname, "./templates/HealthCheckPeriodicStatus.pug")
   );
 
+  const period = interval.label.replace(/\w\S*/g, (w) =>
+    w.replace(/^\w/, (c) => c.toUpperCase())
+  );
+
   const html = template({
     timestamp: new Date(),
-    period: interval.label,
+    environment: environment,
+    period: period,
   });
 
   const cronCallback = () => {
-    mailer.send("Health Check - Periodic Service Status", html, "", recipients);
+    mailer.send(
+      `Health Check - Periodic Service Status ${environment}`,
+      html,
+      "",
+      recipients
+    );
     console.log("Periodic Status Alert Sent");
   };
 

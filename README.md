@@ -54,6 +54,7 @@ This feature sends periodic emails for recipients to make sure the health check 
 const periodicStatusAlertConfig = {
   interval: intervals["once-a-day"],
   recipients: ["notify-user1@example.com"],
+  environment: "My Server Production"
 };
 
 healthCheck.sendPeriodicServiceStatus(periodicStatusAlertConfig);
