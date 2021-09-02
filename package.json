@@ -31,5 +31,9 @@
     "notifications",
     "http",
     "https"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arunwij/health-check"
+  }
 }
